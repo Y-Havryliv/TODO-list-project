@@ -1,0 +1,23 @@
+body {
+    margin-top: 20px;
+}
+
+a.manage-task-tags {
+    text-decoration: none;
+}
+
+.float-right-button {
+    float: right;
+}
+
+a.white-color-tag {
+    color: white;
+}
+
+span.green-coloured-text {
+    color: green;
+}
+
+span.red-coloured-text {
+    color: red;
+}

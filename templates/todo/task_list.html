@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>Tasks</title>
+{% endblock %}
+
+{% block content %}
+    <h1>TODO list
+        <button class="btn btn-primary float-right-button"><a
+                class="white-color-tag" href="{% url 'todo:task-create' %}">Add
+            task</a></button>
+    </h1>
+    {% for task in task_list %}
+        <p>
+        <h4>{{ task.content }}:
+            {% if task.done_status %}
+                <span class="green-coloured-text">Done</span>
+                <button class="btn btn-secondary float-right-button"><a
+                        class="white-color-tag"
+                        href="{% url 'todo:task-manage' pk=task.id action="undo" %}">Undo</a>
+                </button>
+            {% else %}
+                <span class="red-coloured-text">Not Done</span>
+                <button class="btn btn-success float-right-button"><a
+                        class="white-color-tag"
+                        href="{% url 'todo:task-manage' pk=task.id action="mark_as_done" %}">Complete</a>
+                </button>
+            {% endif %} </h4></p>
+        <p>Created: {{ task.created_at }}</p>
+        <p>Tags:
+            {% for tag in task.tags.all %}
+                {{ tag.name }}
+            {% endfor %}
+            <a href="{% url 'todo:task-update' pk=task.id %}"
+               class="manage-task-tags">Update</a>
+            <a href="{% url 'todo:task-delete' pk=task.id %}"
+               class="manage-task-tags">Delete</a>
+        </p>
+
+        <hr>
+    {% endfor %}
+
+{% endblock %}
